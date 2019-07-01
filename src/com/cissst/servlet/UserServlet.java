@@ -29,11 +29,13 @@ public class UserServlet extends HttpServlet{
 		ICustomAccountService cs = new CustomAccountServiceImpl();
 		HttpSession session = request.getSession();
 		if("login".equals(action)){
+
 			String name = request.getParameter("username");
 			String password = MD5Util.encode(request.getParameter("password"));
 			String usertype = request.getParameter("usertype");
 			Admin a = as.findBynp(name, password);
 			CustomAccount c = cs.findBynp(name, password);
+			System.out.println(name+" "+password);
 			if(a != null){
 				String n = a.getName();
 				String p = a.getPassword();
@@ -42,7 +44,7 @@ public class UserServlet extends HttpServlet{
 					response.sendRedirect("index.jsp");
 
 				}else{
-				response.getWriter().write("<script charset='UTF-8'>alert(\"用户名或密码错误！\");" +
+				response.getWriter().write("<script charset='UTF-8'>alert(\"用户名或密码错误！1\");" +
                         "location.href='index.jsp';</script>");
 				}
 			}else if(c != null){
@@ -53,11 +55,11 @@ public class UserServlet extends HttpServlet{
 					response.sendRedirect("index2.jsp");
 
 				}else{
-				response.getWriter().write("<script charset='UTF-8'>alert(\"用户名或密码错误！\");" +
+				response.getWriter().write("<script charset='UTF-8'>alert(\"用户名或密码错误！2\");" +
                         "location.href='index.jsp';</script>");
 				}
 			}else{
-				response.getWriter().write("<script charset='UTF-8'>alert(\"用户名或密码错误！\");" +
+				response.getWriter().write("<script charset='UTF-8'>alert(\"用户名或密码错误！3\");" +
                         "location.href='index.jsp';</script>");
 			}
 			

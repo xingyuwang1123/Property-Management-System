@@ -23,6 +23,7 @@ public class AdminServlet extends HttpServlet{
 		response.setContentType("text/html;charset=UTF-8;");
 		String action = request.getParameter("action");
 		IAdminService adminService = new AdminServiceImpl();
+
 		if("adminList".equals(action)){
 			List<Admin> list =  adminService.findAlladmins();
 			request.setAttribute("admins", list);
